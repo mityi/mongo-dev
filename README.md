@@ -6,13 +6,11 @@
 version: '3.4'
 services:
   mongo-server-container:
-    container_name: "mongo-server"
-    build:
-      context: ./mongo
-    image: my/mongo-server
+    container_name: "mongo-dev"
+    image: mityi/mongo-dev:4.2.3
     restart: always
     ports:
-    - "3099:27017"
+      - "27017:27017"
     environment:
       AUTH: "yes"
       MONGO_ADMIN_USER: "admin"
@@ -23,10 +21,12 @@ services:
       MONGO_SERVICE2_PASSWORD: "userpwd"
       MONGO_APPLICATION_DATABASE: service1,service2
     volumes:
-    - ./mongo-server-data:/data/db
+      - ./mongo-server-data:/data/db
 ```
 
 get image
 ```
 docker push mityi/mongo-dev:tagname
 ```
+
+Note:`tagname` will be equal to mongo tag which we use  
